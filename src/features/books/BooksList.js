@@ -13,19 +13,20 @@ const BooksList = () => {
   const sortedBooks = [...books].sort((a, b) => {
     const keyA = a[sortBy]?.toUpperCase?.() || '';
     const keyB = b[sortBy]?.toUpperCase?.() || '';
-    if (order === 'asc') return keyA.localeCompare(keyB);
-    else return keyB.localeCompare(keyA);
+    return order === 'asc' ? keyA.localeCompare(keyB) : keyB.localeCompare(keyA);
   });
 
   return (
     <div>
-      <select onChange={(e) => dispatch(setSortBy(e.target.value))}>
+      <h1>Books List</h1>
+
+      <select aria-label="Sort By" onChange={(e) => dispatch(setSortBy(e.target.value))}>
         <option value="title">Title</option>
         <option value="author">Author</option>
         <option value="publisher">Publisher</option>
       </select>
 
-      <select onChange={(e) => dispatch(setOrder(e.target.value))}>
+      <select aria-label="Order" onChange={(e) => dispatch(setOrder(e.target.value))}>
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
