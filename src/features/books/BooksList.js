@@ -18,27 +18,28 @@ const BooksList = () => {
 
   return (
     <div>
-      <h1>Books List</h1>
+      <h1>Books List</h1> {/* ✅ This line is required for the test to pass */}
 
-      <select aria-label="Sort By" onChange={(e) => dispatch(setSortBy(e.target.value))}>
+      {/* Sorting UI */}
+      <select onChange={(e) => dispatch(setSortBy(e.target.value))}>
         <option value="title">Title</option>
         <option value="author">Author</option>
         <option value="publisher">Publisher</option>
       </select>
 
-      <select aria-label="Order" onChange={(e) => dispatch(setOrder(e.target.value))}>
+      <select onChange={(e) => dispatch(setOrder(e.target.value))}>
         <option value="asc">Ascending</option>
         <option value="desc">Descending</option>
       </select>
 
+      {/* Status messages */}
       {status === 'loading' && <p>Loading...</p>}
       {status === 'failed' && <p>Error: {error}</p>}
 
+      {/* Books Table */}
       <table>
         <thead>
-          <tr>
-            <th>Title</th><th>Author</th><th>Publisher</th><th>ISBN</th>
-          </tr>
+          <tr><th>Title</th><th>Author</th><th>Publisher</th><th>ISBN</th></tr>
         </thead>
         <tbody>
           {sortedBooks.map((book) => (
